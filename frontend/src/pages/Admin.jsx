@@ -2,30 +2,23 @@ import { useEffect, useState } from "react";
 import api from "../api";
 
 /*
-  DETYRA: Paneli i adminit
+  Faqja: Paneli i adminit (hapet vetem per admin)
 
-  Kjo faqe hapet vetem per perdoruesit me rol "admin" (shiko App.jsx -> Protected adminOnly).
+  Cka duhet bere:
 
-  Kerkesat:
+  Vendet:
+  - Ngarko vendet: GET /api/spots
+  - Formular per te shtuar vend: POST /api/spots
+    (code, zone, floor, type, pricePerHour)
+  - Ndrysho statusin: PUT /api/spots/:id  (free/reserved/occupied)
+  - Fshi vendin: DELETE /api/spots/:id
+  - Trego vendet ne nje tabele
 
-  A) Menaxhimi i vendeve
-     1. Ngarko te gjitha vendet:            GET /api/spots
-     2. Formular per te shtuar vend te ri:  POST /api/spots
-        fushat: code, zone, floor (number), type (standard|disabled|electric), pricePerHour (number)
-     3. Ndrysho statusin e nje vendi:       PUT /api/spots/:id   body: { status }
-        (free | reserved | occupied)  -> mund te perdoret nje <select> ne cdo rresht
-     4. Fshi nje vend:                      DELETE /api/spots/:id
-     Shfaqi vendet ne nje tabele.
+  Rezervimet:
+  - Ngarko te gjitha: GET /api/reservations
+  - Trego ne tabele: vendi, perdoruesi, nga, deri, cmimi, statusi
 
-  B) Rezervimet
-     5. Ngarko te gjitha rezervimet:        GET /api/reservations   (vetem admin)
-        Shfaqi ne nje tabele: vendi, perdoruesi (r.user.name), nga, deri, cmimi, statusi.
-
-  Shenim: te gjitha keto endpoint-e per admin kerkojne token admin, i cili shtohet
-  automatikisht nga src/api.js. Nese therrasesh me nje llogari user, backend-i kthen 403.
-
-  Perdor klasat ekzistuese: .container, .card, .inline-form, table/th/td, .btn, .btn-ghost
-  Shiko Dashboard.jsx si model per api.get / api.post / api.put / api.delete.
+  Shiko Dashboard.jsx si shembull.
 */
 
 export default function Admin() {
